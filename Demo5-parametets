@@ -1,0 +1,26 @@
+pipeline {
+   agent any
+   parameters {
+		string(name:'userName',defaultValue:'wangchao',description: '请输入你的名称')
+		choice(name: 'version', choices: ['1.1', '1.2', '1.3'], description: 'select the version to test')
+        booleanParam(name: 'is_boy', defaultValue: true, description: 'you is boy or not')
+   }
+   stages {
+       stage ('test') {
+           steps {
+               script{
+					sh "java -version"
+			   }
+           }
+       }
+
+    }
+	 post {
+		success{
+			script{
+				println "执行成功"
+			}
+		}
+		
+	}
+}
