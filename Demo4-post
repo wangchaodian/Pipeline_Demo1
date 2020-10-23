@@ -1,0 +1,26 @@
+pipeline {
+   agent {
+       node{
+		label 'sunsharp-100'
+		customWorkspace "${env.JOB_NAME}/${env.BUILD_NUMBER}" 
+		}
+   }
+   stages {
+       stage ('Build') {
+           steps {
+               bat "dir" // 如果jenkins安装在windows并执行这部分代码
+               //sh "pwd"  //这个是Linux的执行
+           }
+       }
+
+       }
+	 post {
+		success{
+			script{
+				println "执行成功"
+			}
+		}
+		
+	 }
+   }
+}
